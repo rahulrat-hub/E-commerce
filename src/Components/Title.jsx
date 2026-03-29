@@ -1,11 +1,10 @@
 import React from 'react'
 
-function Title({t1,t2,p1,p2}) {
+function Title({t1,t2,p1}) {
   return (
    <>
-   <h1 className='h-10 text-3xl font-mono hover:text-orange-300 text-center pb-0.5 bg-[#172136] mt-1 text-white uppercase'>{t1}<span>{t2}</span></h1> 
-   {p1}
-   {p2}
+   <h1 className='text-center text-2xl font-bold pt-6 underline underline-offset-4 decoration-red-500 uppercase text-white'>{t1}<span>{t2}</span></h1> 
+   <p className='text-white p-7.5 uppercase font-mono'>{p1}</p>
    </>
   )
 }
