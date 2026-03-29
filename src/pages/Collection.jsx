@@ -8,7 +8,7 @@ import SearchIcon from '@mui/icons-material/Search';
 function Collection() {
   const [data, setdata] = useState(products)
   return (
-  <div className="">
+  <div className="bg-black ">
 
 {/* {heading - Start} */}
 <div className="text-center text-2xl uppercase mt-2 font-bold underline decoration-amber-600 underline-offset-2 p-2.5">
@@ -41,7 +41,7 @@ function Collection() {
 
 {/* {Checkbox & Product Div -Start} */}
 
-<div className="h-screen w-full mt-2 flex">
+<div className=" mt-2 flex">
 
 <div className="left h-70 rounded-2xl w-60 border-2 ml-2 ">
 <h1 className='text-center font-bold text-2xl bg-amber-600 rounded-t-[14px]'>Category</h1>
