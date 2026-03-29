@@ -5,7 +5,7 @@ import  { assets } from '../assets/frontend_assets/assets'
 function Navbar() {
   return (
 
-<div className="flex  bg-black h-20 w-full">
+<div className="flex  bg-black h-18 w-full">
     
   <div className="flex gap-50.5">
       {/* {NAVBAR} */}
