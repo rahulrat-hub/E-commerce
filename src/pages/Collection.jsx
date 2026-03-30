@@ -7,21 +7,22 @@ import SearchIcon from '@mui/icons-material/Search';
 
 function Collection() {
   const [data, setdata] = useState(products)
+  
   return (
   <div className="bg-black ">
 
 {/* {heading - Start} */}
-<div className="text-center text-2xl uppercase mt-2 font-bold underline decoration-amber-600 underline-offset-2 p-2.5">
-  <h1>Collection</h1>
+<div className="text-center text-2xl uppercase pt-6 font-bold underline decoration-gray-400 underline-offset-2 p-2.5">
+  <h1 className='text-white'>Collection</h1>
 </div>
 {/* {End} */}
 
 {/* {Search & Sort Container - Start} */}
-<div className="flex justify-around items-center ml-74.25 mt-5 ">
+<div className="flex justify-around items-center ml-74.25 mb-5 mt-2 text-white  ">
 
 {/* {searchbar} */}
 <div className="h-11 w-175 relative">
-  <input className='h-full w-full border-2 rounded-2xl p-2' type="text" placeholder='Search.....' />
+  <input className='h-full w-full border rounded-2xl p-2' type="text" placeholder='Search.....' />
 <div className="absolute top-2.25 right-1.5 cursor-pointer">
     <SearchIcon />
 </div>
@@ -29,10 +30,10 @@ function Collection() {
 
 {/* {Sort} */}
 <div>
-<select className='border-2 rounded-2xl p-1 cursor-pointer'>
- <option value="">Sort</option>
-  <option value="">Low</option>
-  <option value="">High</option>
+<select className='border rounded-2xl p-1 cursor-pointer'>
+ <option className='text-black' value="">Sort</option>
+  <option className='text-black'  value="">Low</option>
+  <option className='text-black' value="">High</option>
 </select>
 </div>
 
@@ -41,44 +42,44 @@ function Collection() {
 
 {/* {Checkbox & Product Div -Start} */}
 
-<div className=" mt-2 flex">
+<div className=" my-12 mx-12 flex gap-10 text-white ">
 
-<div className="left h-70 rounded-2xl w-60 border-2 ml-2 ">
-<h1 className='text-center font-bold text-2xl bg-amber-600 rounded-t-[14px]'>Category</h1>
-<div className="flex flex-col text-[18px] font-semibold p-4">
-<label >
-  Men<input className='m-1' type="checkbox" />
-</label>
+{/* {CHECKED BOX} */}
+<div className="bg-transparent border rounded-2xl h-90 w-75">
 
-<label >
-  Women<input className='m-1' type="checkbox" />
-</label>
+{/* {HEADING} */}
+<h4 className='uppercase text-center py-2 text-[18px] font-semibold tracking-wide'>Category</h4>
 
-<label >
-  Kids<input className='m-1' type="checkbox" />
-</label>
+{/* {CATEGORY} */}
+<div className="category flex flex-col gap-3 text-sm p-4">
+ {["MEN","WOMEN","KIDS"].map((item)=> <label key={item}
+  className='flex justify-between items-center cursor-pointer group'>
+<span className='text-gray-400 group-hover:text-white transition'>{item}</span>
+<input className='w-4 h-4 cursor-pointer accent-white' type="checkbox" />
+  </label>
+ )}
 </div>
- 
- 
-  <h1 className='text-center font-bold text-2xl bg-amber-600 '>Sub-Category</h1>
- <div className="flex flex-col text-[18px] font-semibold p-4">
- <label >
-  Top-Wear<input className='m-1' type="checkbox" />
+
+{/* {DIVIDER} */}
+<div className="h-px bg-[#2A2A2A] my-2" />
+
+{/* {HEADING} */}
+<h4 className='uppercase text-center py-2 text-[18px] font-semibold tracking-wide'>Sub-Category</h4>
+
+{/* {SUB-CATEGORY} */}
+<div className="flex flex-col gap-3 text-sm p-4">
+{["TOP-WEAR","BOTTOM-WEAR","WINTER-WEAR"].map((item)=>
+<label  key={item}
+className='flex justify-between items-center cursor-pointer group'>
+<span className='text-gray-400 group-hover:text-white transition'>{item}</span>
+<input className='w-4 h-4 cursor-pointer accent-white' type="checkbox" />
 </label>
+)}
+</div>
+</div>
 
-<label >
-  Bottom-Wear<input className='m-1' type="checkbox" />
-</label>
-
-
-<label >
-  Winter-Wear<input className='m-1' type="checkbox" />
-</label>
- </div>
- </div>
-
-
-<div className="right h-full w-[90%] flex flex-wrap gap-1 ml-2 ">
+{/* {PRODUCTS} */}
+<div className="right h-full w-[90%] flex flex-wrap gap-1 ml-2 text-black">
   {
   data.map((obj,index)=>
   <ProductItem 
@@ -91,38 +92,6 @@ function Collection() {
 )
 } </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
   )
 }

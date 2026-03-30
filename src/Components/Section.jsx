@@ -9,7 +9,7 @@ function Section({ title, text, img, reverse }) {
       <motion.div
         initial={{ opacity: 0, x: reverse ? 50 : -50 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{  margin: "-100px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <h2 className="text-3xl font-semibold mb-4">{title}</h2>
