@@ -11,6 +11,12 @@ function Collection() {
   const [category,setCategory] = useState([]);
   const [subCategory, setsubCategory] = useState([]);
   const [sortPrice, setsortPrice] = useState("sort")
+  const [searchbar, setSearchbar] = useState("")
+
+  const searchQuery = (event) => {
+    let q = event.target.value.toUpperCase();
+    setSearchbar(q);
+  }
 
   const sorting = (event) => {
     let s = event.target.value
@@ -38,15 +44,19 @@ updateProducts = updateProducts.filter((i)=>subCategory.includes(i.subCategory))
 }
 
 if(sortPrice == "low"){
-  updateProducts.sort((a,b)=>a.price - b.price);
+updateProducts = updateProducts.sort((a,b)=>a.price - b.price);
 }
 
 if(sortPrice == "high"){
-  updateProducts.sort((a,b)=>b.price - a.price);
+ updateProducts = updateProducts.sort((a,b)=>b.price - a.price);
+}
+
+if(searchbar){
+ updateProducts = updateProducts.filter(i=>i.name.toUpperCase().includes(searchbar)); 
 }
 
 setdata(updateProducts);
-}, [category,subCategory,sortPrice])
+}, [category,subCategory,sortPrice,searchbar])
 
  return (
   <div className="bg-black ">
@@ -62,7 +72,7 @@ setdata(updateProducts);
 
 {/* {searchbar} */}
 <div className="h-11 w-175 relative">
-  <input className='h-full w-full border rounded-2xl p-2' type="text" placeholder='Search.....' />
+  <input onChange={searchQuery} className='h-full w-full border rounded-2xl p-2' type="text" placeholder='Search.....' />
 <div className="absolute top-2.25 right-1.5 cursor-pointer">
     <SearchIcon />
 </div>
