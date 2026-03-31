@@ -9,18 +9,30 @@ import SearchIcon from '@mui/icons-material/Search';
 function Collection() {
   const [data, setdata] = useState(products);
   const [category,setCategory] = useState([]);
+  const [subCategory, setsubCategory] = useState([]);
 
   const toggleCategory = (event) => {
-let c = event.target.value;
-setCategory((i)=>i.includes(c)?i.filter(o =>o != c) :[...i,c])
+    let c = event.target.value;
+    setCategory((i)=>i.includes(c) ?i .filter((o) =>o != c) :[...i,c])
   };
- useEffect(()=>{
-let updateproducts = products;
+ 
+  const toggleSubCategory = (event) => {
+let c = event.target.value;
+setsubCategory((i)=>i.includes(c) ? i.filter((o) => o != c) : [...i,c])
+  };
+ 
+  useEffect(()=>{
+let updateProducts = [...products];
 if(category.length){
- updateproducts = updateproducts.filter((i)=>category.includes(i.category))
- setdata(updateproducts)
+ updateProducts = updateProducts.filter((i)=>category.includes(i.category))
 }
-}, [category])
+
+if(subCategory.length){
+updateProducts = updateProducts.filter((i)=>subCategory.includes(i.subCategory))
+}
+
+setdata(updateProducts);
+}, [category,subCategory])
 
  return (
   <div className="bg-black ">
@@ -59,7 +71,7 @@ if(category.length){
 <div className=" my-12 mx-12 flex gap-10 text-white relative">
 
 {/* {CHECKED BOX} */}
-<div className="bg-transparent border rounded-2xl h-90 w-75 fixed top-60 left-0 ">
+<div className=" border rounded-2xl h-90 w-75 fixed top-60 left-0 ">
 
 {/* {HEADING} */}
 <h4 className='uppercase text-center py-2 text-[18px] font-semibold tracking-wide'>Category</h4>
@@ -67,18 +79,18 @@ if(category.length){
 {/* {CATEGORY} */}
 <div className="category flex flex-col gap-3 text-sm p-4">
  <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>MEN</span>
+<span className='text-gray-400 group-hover:text-white transition'>Men</span>
 <input onChange={toggleCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Men" />
   </label>
 
   <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>WOMEN</span>
+<span className='text-gray-400 group-hover:text-white transition'>Women</span>
 <input onChange={toggleCategory}  className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Women" />
   </label>
 
 
   <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>KIDS</span>
+<span className='text-gray-400 group-hover:text-white transition'>Kids</span>
 <input onChange={toggleCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Kids" />
   </label>
 
@@ -94,19 +106,19 @@ if(category.length){
 <div className="flex flex-col gap-3 text-sm p-4">
 
 <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>TOP-WEAR</span>
-<input className='w-4 h-4 cursor-pointer accent-white' type="checkbox" />
+<span className='text-gray-400 group-hover:text-white transition'>Topwear</span>
+<input onChange={toggleSubCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Topwear" />
 </label>
 
 <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>BOTTOM-WEAR</span>
-<input className='w-4 h-4 cursor-pointer accent-white' type="checkbox" />
+<span className='text-gray-400 group-hover:text-white transition'>Bottomwear</span>
+<input onChange={toggleSubCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Bottomwear" />
 </label>
 
 
 <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>WINTER-WEAR</span>
-<input className='w-4 h-4 cursor-pointer accent-white' type="checkbox" />
+<span className='text-gray-400 group-hover:text-white transition'>Winterwear</span>
+<input onChange={toggleSubCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Winterwear" />
 </label>
 
 </div>
