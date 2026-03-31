@@ -10,6 +10,12 @@ function Collection() {
   const [data, setdata] = useState(products);
   const [category,setCategory] = useState([]);
   const [subCategory, setsubCategory] = useState([]);
+  const [sortPrice, setsortPrice] = useState("sort")
+
+  const sorting = (event) => {
+    let s = event.target.value
+   setsortPrice(s);
+  }
 
   const toggleCategory = (event) => {
     let c = event.target.value;
@@ -31,8 +37,16 @@ if(subCategory.length){
 updateProducts = updateProducts.filter((i)=>subCategory.includes(i.subCategory))
 }
 
+if(sortPrice == "low"){
+  updateProducts.sort((a,b)=>a.price - b.price);
+}
+
+if(sortPrice == "high"){
+  updateProducts.sort((a,b)=>b.price - a.price);
+}
+
 setdata(updateProducts);
-}, [category,subCategory])
+}, [category,subCategory,sortPrice])
 
  return (
   <div className="bg-black ">
@@ -56,8 +70,8 @@ setdata(updateProducts);
 
 {/* {Sort} */}
 <div>
-<select className='border rounded-2xl p-1 cursor-pointer'>
- <option className='text-black' value="">Sort</option>
+<select onChange={sorting} className='border rounded-2xl p-1 cursor-pointer'>
+ <option  className='text-black' value="sort">Sort</option>
   <option className='text-black'  value="low">Low</option>
   <option className='text-black' value="high">High</option>
 </select>
