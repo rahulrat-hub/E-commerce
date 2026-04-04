@@ -10,7 +10,7 @@ function Footer() {
 <div className="text-center py-20 border-b border-[#1A1A1A]">
 <motion.h2
 inital={{opacity:0, y:30}}
-whieInView={{opacity:1, y:0}}
+whileInView={{opacity:1, y:0}}
 transition={{duration:0.6}}
 className='text-3xl md:text-5xl font-semibold tracking-wide '
 >

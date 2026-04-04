@@ -10,7 +10,7 @@ function Collection() {
   const [data, setdata] = useState(products);
   const [category,setCategory] = useState([]);
   const [subCategory, setsubCategory] = useState([]);
-  const [sortPrice, setsortPrice] = useState("sort")
+  const [sortPrice, setsortPrice] = useState("")
   const [searchbar, setSearchbar] = useState("")
 
   const searchQuery = (event) => {
@@ -154,8 +154,8 @@ setdata(updateProducts);
   data.map((obj,index)=>
   <ProductItem 
   key={index}
-  id={obj.id}
-  image={obj.image}
+  id={obj._id}
+  image={obj.image[0]}
   name={obj.name}
   price={obj.price}
   />
