@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { products } from '../assets/frontend_assets/assets';
 import { scale, transform } from 'framer-motion';
+import RelatedProducts from '../Components/RelatedProducts';
 
 
 function SingleProduct() {
@@ -45,10 +46,12 @@ useEffect(() => {
 },[pid]);
 
  return (
-  <div className="">
+ 
+  <>
     {
       findproduct ? (
-        <div className="min-h-screen text-white bg-black py-8 px-10 flex gap-10">
+       <div className="min-h-screen bg-black">
+         <div className=" text-white py-8 px-10 flex  gap-10">
           <div className="flex gap-5">
             <div className="left">
               {
@@ -98,17 +101,25 @@ useEffect(() => {
 <button className="h-10 bg-white text-black py-1 hover:bg-gray-300 transition cursor-pointer">
   Add to Cart
 </button>
+</div>
+</div>
+
+<div className="text-white">
+
+<RelatedProducts 
+ category = {findproduct.category}
+ subcategory = {findproduct.subcategory}
+
+/>
 
 
 </div>
-
-
-
-        </div>
+       </div>
       ) : (<h1>404 error</h1>)
     }
-  </div>
+  </>
   )
 }
+
 
 export default SingleProduct

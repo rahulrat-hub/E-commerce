@@ -14,7 +14,7 @@ function ProductItem({ image, name, price, index, id }) {
         <button onClick={(e)=>{
           e.stopPropagation()
           e.preventDefault()
-        }} className='font-semibold border-2 h-8.5 w-54.25 rounded-2xl mt-2 bg-white'>Add to Cart</button>
+        }} className='font-semibold border-2 h-8.5 w-54.25 rounded-2xl mt-2 text-black bg-white'>Add to Cart</button>
       </div>
    </Link> 
   )
