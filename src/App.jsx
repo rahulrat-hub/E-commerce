@@ -6,6 +6,7 @@ import About from './pages/About'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import SingleProduct from './pages/SingleProduct'
+import CustomCursor from './Components/CustomCursor'
 
 
 
@@ -14,7 +15,7 @@ function App() {
   return (
     <div className='h-screen w-full'>
       <Navbar />
-     
+  <CustomCursor />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/Collection' element={<Collection />} />
