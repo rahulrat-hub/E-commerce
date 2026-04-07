@@ -14,6 +14,7 @@ import CustomCursor from './Components/CustomCursor'
 function App() {
   return (
     <div className='h-screen w-full'>
+      
       <Navbar />
   <CustomCursor />
       <Routes>

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { products } from '../assets/frontend_assets/assets';
 import { scale, transform } from 'framer-motion';
 import RelatedProducts from '../Components/RelatedProducts';
+import { ProductContext } from '../context/ProductContext';
 
 
 function SingleProduct() {
@@ -11,7 +12,7 @@ const [findproduct, setfindProduct] = useState(null);
 const [image, setImage] = useState(null);
 const [size, setSize] = useState("");
 const [zoomStyle, setzoomStyle] = useState({});
-
+const {addToBag} = useContext(ProductContext);
 
 const fetchProduct = () => {
  let d = products.find((obj) => obj._id == pid);
@@ -98,7 +99,7 @@ useEffect(() => {
 }
 </div>
 
-<button className="h-10 bg-white text-black py-1 hover:bg-gray-300 transition cursor-pointer">
+<button onClick={()=>addToBag(findproduct._id, size)}  className="h-10 bg-white text-black py-1 hover:bg-gray-300 transition cursor-pointer">
   Add to Cart
 </button>
 </div>

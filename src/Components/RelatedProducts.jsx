@@ -28,7 +28,7 @@ t2={"Products"}
   relproduct.slice(0,4).map((obj,ind)=>
   <ProductItem 
   key={ind}
-  id={obj.id}
+  id={obj._id}
   image={obj.image[0]}
   price={obj.price}
   name={obj.name}
