@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import  { assets } from '../assets/frontend_assets/assets'
+import { ProductContext } from '../context/ProductContext'
+
 
 function Navbar() {
+  const {getTotalQuantity} = useContext(ProductContext)
   return (
 
 <div className="flex  bg-black h-18 w-full border-b border-white">
@@ -24,10 +27,13 @@ function Navbar() {
 {/* {END} */}
   </div>
 
-<div className="flex ml-74">
+<div className="flex ml-74 relative">
   {/* {CART} */}
 
   <img className='h-19.75 w-23.5 cursor-pointer' src={assets.cart} alt="" />
+  <span className="absolute top-10 right-33 h-5 w-5 text-sm rounded-xl flex justify-center items-center bg-white ">
+    {getTotalQuantity()}
+  </span>
 
 {/* {LOGIN} */}
 <p className='text-white font-semibold p-7 cursor-pointer'>LOG IN</p>

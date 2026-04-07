@@ -7,7 +7,18 @@ export let ProductContext = createContext();
 
 function ProductProvider({children}) {
   const [cartItem, setcartItem] = useState({});
-   
+  
+  function getTotalQuantity(){
+    let total = 0;
+
+    for(let id in cartItem){
+      for(let size in cartItem[id]){
+        let quantity = cartItem[id][size]
+        total += quantity
+      }
+    }
+    return total
+  }
   
   // add to Bag function
   const addToBag = (id, size) => {
@@ -38,7 +49,8 @@ function ProductProvider({children}) {
       const obj ={
       cartItem,
       setcartItem,
-      addToBag
+      addToBag,
+      getTotalQuantity
     };
     
     return(
