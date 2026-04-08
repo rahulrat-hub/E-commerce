@@ -4,39 +4,46 @@ import { products } from '../assets/frontend_assets/assets'
 import ProductItem from './ProductItem'
 
 function BestSeller() {
-  const [bestSeller1, setbestSeller1] = useState(false)
-const best = () => {
-let b = products.filter((i)=> i.bestseller === true )
-setbestSeller1(b);
-}
-useEffect(()=>{
-  best();
-}, []);
+
+  const [bestSeller1, setbestSeller1] = useState([])
+
+  useEffect(() => {
+    const best = products.filter((i) => i.bestseller === true)
+    setbestSeller1(best)
+  }, [])
 
   return (
-    <div>
-      <div className="bg-black h-150 ">
-        <Title 
-        t1="Best"
-        t2=" Seller"
-        p1="Our Best Sellers collection is where style meets trust. These are the products our customers love the most—chosen for their quality, design, and everyday value. Each item in this section has earned its place through real demand and positive experiences, making it easier for you to shop with confidence. Whether you're looking for timeless essentials or trending favorites, our best sellers represent the perfect balance of popularity and performance. Discover what everyone is choosing—and why you should too."
-        />
+    <section className="bg-linear-to-b from-black via-gray-900 to-black text-gray-200 py-16 px-6">
 
-<div className="flex flex-wrap gap-8 justify-center">
-{
-  bestSeller1 && bestSeller1.slice(0,4).map((obj,ind)=>
-  <ProductItem 
-  key={ind}
-  id={obj.id}
-  name={obj.name}
-  image={obj.image}
-  price={obj.price}
-  />
-  )
-}
-</div>
-</div>
-    </div>
+      {/* Title */}
+      <div className="max-w-5xl mx-auto text-center mb-12">
+        <Title 
+          t1="Best"
+          t2=" Seller"
+          p1="Our Best Sellers collection is where style meets trust. These are the products our customers love the most—chosen for their quality, design, and everyday value."
+        />
+      </div>
+
+      {/* Products */}
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+        {
+          bestSeller1.slice(0,4).map((obj, ind) => (
+            <div
+              key={ind}
+              className="bg-gray-900 border border-gray-800 rounded-xl p-2 hover:border-blue-500 transition duration-300"
+            >
+              <ProductItem 
+                id={obj.id}
+                name={obj.name}
+                image={obj.image}
+                price={obj.price}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+    </section>
   )
 }
 

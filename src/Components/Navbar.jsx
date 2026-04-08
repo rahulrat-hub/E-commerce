@@ -1,44 +1,75 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
-import  { assets } from '../assets/frontend_assets/assets'
+import { Link, NavLink } from 'react-router-dom'
+import { assets } from '../assets/frontend_assets/assets'
 import { ProductContext } from '../context/ProductContext'
 
-
 function Navbar() {
-  const {getTotalQuantity} = useContext(ProductContext)
+  const { getTotalQuantity } = useContext(ProductContext)
+
   return (
+    <div className="bg-black border-b border-gray-800 text-white">
+      
+      <div className="max-w-6xl mx-auto flex justify-between items-center h-20 px-4">
 
-<div className="flex  bg-black h-18 w-full border-b border-white">
-    
-  <div className="flex gap-50.5">
-      {/* {NAVBAR} */}
-<div className="flex gap-6 ml-4 text-[18px] font-bold text-white items-center">
-  <NavLink to="/">Home</NavLink>
-<NavLink to="/Collection">Collection</NavLink>
-<NavLink to="/About">About</NavLink>
-  <NavLink to="/Contact">Contact</NavLink>
-</div>
-{/* {END} */}
+        {/* Logo */}
+        <div className="flex items-center gap-4">
+          <img src={assets.logo} alt="Logo" className="h-12 w-auto" />
+        </div>
 
-{/* {LOGO} */}
-<div className="h-20 w-38">
-  <img className='' src={assets.logo} alt="" />
-</div>
-{/* {END} */}
-  </div>
+        {/* Navigation Links */}
+        <div className="hidden md:flex gap-8 font-semibold text-lg">
+          <NavLink
+            to="/"
+            className={({ isActive }) => 
+              isActive ? "text-blue-500" : "hover:text-blue-400 transition"
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/Collection"
+            className={({ isActive }) =>
+              isActive ? "text-blue-500" : "hover:text-blue-400 transition"
+            }
+          >
+            Collection
+          </NavLink>
+          <NavLink
+            to="/About"
+            className={({ isActive }) =>
+              isActive ? "text-blue-500" : "hover:text-blue-400 transition"
+            }
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/Contact"
+            className={({ isActive }) =>
+              isActive ? "text-blue-500" : "hover:text-blue-400 transition"
+            }
+          >
+            Contact
+          </NavLink>
+        </div>
 
-<div className="flex ml-74 relative">
-  {/* {CART} */}
+        {/* Cart + Login */}
+        <div className="flex items-center gap-6 relative">
+          <Link to="/cart" className="relative">
+            <img src={assets.cart} alt="Cart" className="h-18 w-18 cursor-pointer" />
+            {getTotalQuantity() > 0 && (
+              <span className="absolute top-4 right-2 bg-blue-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {getTotalQuantity()}
+              </span>
+            )}
+          </Link>
 
-  <img className='h-19.75 w-23.5 cursor-pointer' src={assets.cart} alt="" />
-  <span className="absolute top-10 right-33 h-5 w-5 text-sm rounded-xl flex justify-center items-center bg-white ">
-    {getTotalQuantity()}
-  </span>
+          <Link to="/login" className="text-white font-semibold px-4 py-2 hover:text-blue-400 transition">
+            LOG IN
+          </Link>
+        </div>
 
-{/* {LOGIN} */}
-<p className='text-white font-semibold p-7 cursor-pointer'>LOG IN</p>
-</div>
-</div>
+      </div>
+    </div>
   )
 }
 

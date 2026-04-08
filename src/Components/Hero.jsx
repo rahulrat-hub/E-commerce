@@ -3,28 +3,42 @@ import { assets } from '../assets/frontend_assets/assets'
 
 function Hero() {
   return (
-    <div className='bg-black h-screen w-full overflow-hidden relative'>
-      {/* {IMAGE - START} */}
-     <img className='h-full w-full object-cover' src={assets.main} alt="" />
-      
-      {/* {END} */}
+    <div className="relative h-screen w-full overflow-hidden">
 
-    {/* {TITLE} */}
-   <div className=" absolute h-10.25 bottom-33.25 left-110.75 p-1.5 ">
-     <p className=' text-white text-[20px] font-light'>Luxury Delivered to Your Doorstep</p>
-   </div>
-   {/* {END} */}
+      {/* Background Image */}
+      <img
+        src={assets.main}
+        alt="Hero Background"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-   {/* {BUTTON -START} */}
-  <div className="absolute h-9.5 w-26 bottom-22.75 left-146.25 bg-white p-2 ">
-     <button className='font-mono cursor-pointer'>SHOP NOW</button>
-  </div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/50 to-black"></div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-end h-full text-center px-6 pb-1">
+
+       {/* Subtitle */}
+        <p className="text-gray-400 text-sm md:text-base max-w-xl mb-6">
+          Experience premium quality, timeless design, and seamless shopping —
+          crafted for those who value excellence.
+        </p>
+
+        {/* Buttons */}
+        <div className="flex gap-4 flex-wrap justify-center">
+          <button className="px-6 py-2 md:px-6 md:py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition duration-300 text-sm md:text-base">
+            Shop Now
+          </button>
+
+          <button className="px-6 py-2 md:px-6 md:py-3 rounded-lg border border-gray-600 text-gray-300 hover:border-blue-500 hover:text-white transition duration-300 text-sm md:text-base">
+            Explore Collection
+          </button>
+        </div>
+
+      </div>
 
     </div>
   )
 }
 
 export default Hero
-
-
- 

@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Contact from './pages/Contact'
 import SingleProduct from './pages/SingleProduct'
 import CustomCursor from './Components/CustomCursor'
+import Cart from './pages/Cart'
 
 
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='/About' element={<About />} />
        <Route path='/product/:pid' element={<SingleProduct />} />
    <Route path='/Contact' element={<Contact />} />
+   <Route path='/Cart' element={<Cart />} />
       </Routes>
       
     </div>

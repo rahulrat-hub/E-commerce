@@ -43,14 +43,14 @@ function ProductProvider({children}) {
     }
 
    useEffect(()=>{
-      console.log(cartItem)
+    
+    console.log("Cart Updated:", cartItem);
     },[cartItem]);
 
       const obj ={
       cartItem,
-      setcartItem,
       addToBag,
-      getTotalQuantity
+      getTotalQuantity,
     };
     
     return(

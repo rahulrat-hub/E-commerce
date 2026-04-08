@@ -1,169 +1,152 @@
 import React, { useEffect, useState } from 'react'
-import { assets, products } from '../assets/frontend_assets/assets'
+import { products } from '../assets/frontend_assets/assets'
 import ProductItem from '../Components/ProductItem'
 import SearchIcon from '@mui/icons-material/Search';
- 
-
- 
 
 function Collection() {
   const [data, setdata] = useState(products);
-  const [category,setCategory] = useState([]);
+  const [category, setCategory] = useState([]);
   const [subCategory, setsubCategory] = useState([]);
   const [sortPrice, setsortPrice] = useState("")
   const [searchbar, setSearchbar] = useState("")
 
   const searchQuery = (event) => {
-    let q = event.target.value.toUpperCase();
-    setSearchbar(q);
+    setSearchbar(event.target.value.toUpperCase());
   }
 
   const sorting = (event) => {
-    let s = event.target.value
-   setsortPrice(s);
+    setsortPrice(event.target.value);
   }
 
   const toggleCategory = (event) => {
     let c = event.target.value;
-    setCategory((i)=>i.includes(c) ?i .filter((o) =>o != c) :[...i,c])
+    setCategory((i) =>
+      i.includes(c) ? i.filter((o) => o !== c) : [...i, c]
+    );
   };
- 
+
   const toggleSubCategory = (event) => {
-let c = event.target.value;
-setsubCategory((i)=>i.includes(c) ? i.filter((o) => o != c) : [...i,c])
+    let c = event.target.value;
+    setsubCategory((i) =>
+      i.includes(c) ? i.filter((o) => o !== c) : [...i, c]
+    );
   };
- 
-  useEffect(()=>{
-let updateProducts = [...products];
-if(category.length){
- updateProducts = updateProducts.filter((i)=>category.includes(i.category))
+
+  useEffect(() => {
+    let updateProducts = [...products];
+
+    if (category.length) {
+      updateProducts = updateProducts.filter((i) =>
+        category.includes(i.category)
+      );
+    }
+
+    if (subCategory.length) {
+      updateProducts = updateProducts.filter((i) =>
+        subCategory.includes(i.subCategory)
+      );
+    }
+
+    if (sortPrice === "low") {
+      updateProducts.sort((a, b) => a.price - b.price);
+    }
+
+    if (sortPrice === "high") {
+      updateProducts.sort((a, b) => b.price - a.price);
+    }
+
+    if (searchbar) {
+      updateProducts = updateProducts.filter((i) =>
+        i.name.toUpperCase().includes(searchbar)
+      );
+    }
+
+    setdata(updateProducts);
+  }, [category, subCategory, sortPrice, searchbar]);
+
+  return (
+    <div className="bg-black min-h-screen text-white px-6">
+
+      {/* Heading */}
+      <h1 className="text-3xl text-center font-bold pt-6 underline underline-offset-4 decoration-gray-600">
+        Collection
+      </h1>
+
+      {/* Search + Sort */}
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-6">
+
+        {/* Search */}
+        <div className="relative w-full md:w-2/3">
+          <input
+            onChange={searchQuery}
+            className="w-full bg-gray-900 border border-gray-700 rounded-xl p-3 pr-10 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+            type="text"
+            placeholder="Search products..."
+          />
+          <SearchIcon className="absolute right-3 top-3 text-gray-400" />
+        </div>
+
+        {/* Sort */}
+        <select
+          onChange={sorting}
+          className="bg-gray-900 border border-gray-700 rounded-xl p-3 cursor-pointer text-gray-300 focus:outline-none"
+        >
+          <option value="">Sort</option>
+          <option value="low">Price: Low → High</option>
+          <option value="high">Price: High → Low</option>
+        </select>
+      </div>
+
+      {/* Main Layout */}
+      <div className="flex flex-col md:flex-row gap-8 mt-10">
+
+        {/* Sidebar Filters */}
+        <div className="md:w-1/4 fixed top-60 left-2 bg-gray-900 border border-gray-800 rounded-xl p-5 h-fit">
+
+          <h4 className="text-lg font-semibold mb-4">Category</h4>
+          <div className="flex flex-col gap-3 text-gray-400">
+            {["Men", "Women", "Kids"].map((item) => (
+              <label key={item} className="flex justify-between cursor-pointer">
+                <span>{item}</span>
+                <input onChange={toggleCategory} type="checkbox" value={item} />
+              </label>
+            ))}
+          </div>
+
+          <div className="h-px bg-gray-800 my-5" />
+
+          <h4 className="text-lg font-semibold mb-4">Sub-Category</h4>
+          <div className="flex flex-col gap-3 text-gray-400">
+            {["Topwear", "Bottomwear", "Winterwear"].map((item) => (
+              <label key={item} className="flex justify-between cursor-pointer">
+                <span>{item}</span>
+                <input onChange={toggleSubCategory} type="checkbox" value={item} />
+              </label>
+            ))}
+          </div>
+        </div>
+
+        {/* Products */}
+        <div className="flex flex-wrap ml-80 ">
+          {data.length > 0 ? (
+            data.map((obj, index) => (
+              <ProductItem
+                key={index}
+                id={obj._id}
+                image={obj.image[0]}
+                name={obj.name}
+                price={obj.price}
+              />
+            ))
+          ) : (
+            <p className="col-span-full text-center text-gray-400">
+              No products found
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-if(subCategory.length){
-updateProducts = updateProducts.filter((i)=>subCategory.includes(i.subCategory))
-}
-
-if(sortPrice == "low"){
-updateProducts = updateProducts.sort((a,b)=>a.price - b.price);
-}
-
-if(sortPrice == "high"){
- updateProducts = updateProducts.sort((a,b)=>b.price - a.price);
-}
-
-if(searchbar){
- updateProducts = updateProducts.filter(i=>i.name.toUpperCase().includes(searchbar)); 
-}
-
-setdata(updateProducts);
-}, [category,subCategory,sortPrice,searchbar])
-
- return (
-  <div className="bg-black ">
-
-{/* {heading - Start} */}
-<div className="text-center text-2xl uppercase pt-6 font-bold underline decoration-gray-400 underline-offset-2 p-2.5">
-  <h1 className='text-white'>Collection</h1>
-</div>
-{/* {End} */}
-
-{/* {Search & Sort Container - Start} */}
-<div className="flex justify-around items-center ml-74.25 mb-5 mt-2 text-white  ">
-
-{/* {searchbar} */}
-<div className="h-11 w-175 relative">
-  <input onChange={searchQuery} className='h-full w-full border rounded-2xl p-2' type="text" placeholder='Search.....' />
-<div className="absolute top-2.25 right-1.5 cursor-pointer">
-    <SearchIcon />
-</div>
-</div>
-
-{/* {Sort} */}
-<div>
-<select onChange={sorting} className='border rounded-2xl p-1 cursor-pointer'>
- <option  className='text-black' value="sort">Sort</option>
-  <option className='text-black'  value="low">Low</option>
-  <option className='text-black' value="high">High</option>
-</select>
-</div>
-
-</div>
-{/* {End} */}
-
-{/* {Checkbox & Product Div -Start} */}
-
-<div className=" my-12 mx-12 flex gap-10 text-white relative">
-
-{/* {CHECKED BOX} */}
-<div className=" border rounded-2xl h-90 w-75 fixed top-60 left-0 ">
-
-{/* {HEADING} */}
-<h4 className='uppercase text-center py-2 text-[18px] font-semibold tracking-wide'>Category</h4>
-
-{/* {CATEGORY} */}
-<div className="category flex flex-col gap-3 text-sm p-4">
- <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>Men</span>
-<input onChange={toggleCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Men" />
-  </label>
-
-  <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>Women</span>
-<input onChange={toggleCategory}  className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Women" />
-  </label>
-
-
-  <label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>Kids</span>
-<input onChange={toggleCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Kids" />
-  </label>
-
-</div>
-
-{/* {DIVIDER} */}
-<div className="h-px bg-[#2A2A2A] my-2" />
-
-{/* {HEADING} */}
-<h4 className='uppercase text-center py-2 text-[18px] font-semibold tracking-wide'>Sub-Category</h4>
-
-{/* {SUB-CATEGORY} */}
-<div className="flex flex-col gap-3 text-sm p-4">
-
-<label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>Topwear</span>
-<input onChange={toggleSubCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Topwear" />
-</label>
-
-<label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>Bottomwear</span>
-<input onChange={toggleSubCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Bottomwear" />
-</label>
-
-
-<label className='flex justify-between items-center cursor-pointer group'>
-<span className='text-gray-400 group-hover:text-white transition'>Winterwear</span>
-<input onChange={toggleSubCategory} className='w-4 h-4 cursor-pointer accent-white' type="checkbox" value="Winterwear" />
-</label>
-
-</div>
-</div>
-
-{/* {PRODUCTS} */}
-<div className="right h-full w-[90%] flex flex-wrap gap-1 ml-75 text-black">
-  {
-  data.map((obj,index)=>
-  <ProductItem 
-  key={index}
-  id={obj._id}
-  image={obj.image[0]}
-  name={obj.name}
-  price={obj.price}
-  />
-)
-} </div>
-</div>
-  </div>
-  )
-}
-
-export default Collection
+export default Collection;

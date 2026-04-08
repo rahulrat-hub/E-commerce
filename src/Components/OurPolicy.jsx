@@ -1,36 +1,51 @@
 import React from 'react'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 import { policies } from '../assets/policy/assets'
 import Section from './Section'
 
-
-
-
 function OurPolicy() {
   return (
-    <div className=' bg-[#0A0A0A] text-white min-h-screen overflow-x-hidden'>
+    <div className="bg-gradient-to-b from-black via-gray-900 to-black text-gray-200 overflow-x-hidden">
 
-{/* {HERO SECTION} */}
-<div className="text-center py-15 px-6">
-<motion.h1
-initial={{opacity:0, y:40}}
-animate={{opacity:1, y:0}}
-transition={{duration:0.8, ease: "easeOut"}}
-className='text-5xl  md:text-7xl font-bold tracking-wide '>
-OUR POLICIES   
-</motion.h1>
+      {/* HERO SECTION */}
+      <div className="text-center py-20 px-6 max-w-4xl mx-auto">
 
-<p className='text-gray-400 text-center mt-4'> Built on trust, transparency, and precision.</p>
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-4xl md:text-6xl font-bold text-white mb-4"
+        >
+          OUR <span className="text-blue-400">POLICIES</span>
+        </motion.h1>
 
-<button className='text-black bg-white mt-10 py-4 px-4 hover:bg-gray-500 hover:text-white  transition-all duration-200'>Contact Support</button>
-</div>
+        {/* Divider */}
+        <div className="w-20 h-1 bg-blue-500 mx-auto mb-6 rounded-full"></div>
 
+        <p className="text-gray-400 text-sm md:text-base">
+          Built on trust, transparency, and precision.
+        </p>
 
-    
-{policies.map((item, i) => (
-  <Section key={i} {...item}  />
-))}
-</div>
+        {/* CTA Button */}
+        <button className="mt-10 px-6 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition duration-300">
+          Contact Support
+        </button>
+
+      </div>
+
+      {/* POLICIES SECTION */}
+      <div className="max-w-6xl mx-auto px-6 pb-16 grid md:grid-cols-2 gap-8">
+        {policies.map((item, i) => (
+          <div
+            key={i}
+            className="bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-blue-500 transition duration-300"
+          >
+            <Section {...item} />
+          </div>
+        ))}
+      </div>
+
+    </div>
   )
 }
 

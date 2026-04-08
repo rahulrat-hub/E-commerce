@@ -4,30 +4,41 @@ import { products } from '../assets/frontend_assets/assets'
 import ProductItem from './ProductItem'
 
 function LatestCollection() {
-const [lProduct, setlProduct] = useState(products)
+
+  const [lProduct] = useState(products)
+
   return (
-    <div className='h-150 w-full bg-black'>
-       <div className="">
-   <Title 
-   t1="Trending"
-   t2=" Collection"
-   p1="Step into a world where elegance meets innovation—our luxury e-commerce experience is crafted for those who appreciate the finer things. Every detail, from curated collections to seamless navigation, reflects sophistication and exclusivity. We bring you premium products that embody quality, style, and timeless design, delivered with precision and care. This is more than shopping—it’s a refined journey where luxury is not just seen, but felt."
-   />
-</div>
-    
-    <div className="flex flex-wrap gap-8 justify-center">
+    <section className="bg-gradient-to-b from-black via-gray-900 to-black text-gray-200 py-16 px-6">
+
+      {/* Title Section */}
+      <div className="max-w-5xl mx-auto text-center mb-12">
+        <Title 
+          t1="Trending"
+          t2=" Collection"
+          p1="Step into a world where elegance meets innovation—our luxury e-commerce experience is crafted for those who appreciate the finer things."
+        />
+      </div>
+
+      {/* Products Grid */}
+      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
         {
-            lProduct.slice(0,4).map((obj,ind)=>
-            <ProductItem  
-            key={ind}
-            id={obj.id}
-            name={obj.name}
-            image={obj.image}
-            price={obj.price}
-            />
-            )}
-    </div>
-    </div>
+          lProduct.slice(0,4).map((obj, ind) => (
+            <div 
+              key={ind}
+              className="bg-gray-900 border border-gray-800 rounded-xl p-2 hover:border-blue-500 transition duration-300"
+            >
+              <ProductItem  
+                id={obj.id}
+                name={obj.name}
+                image={obj.image}
+                price={obj.price}
+              />
+            </div>
+          ))
+        }
+      </div>
+
+    </section>
   )
 }
 
