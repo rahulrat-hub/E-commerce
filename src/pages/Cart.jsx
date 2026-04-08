@@ -31,13 +31,25 @@ useEffect(() => {
     let productData = products.find(obj=>obj._id === i._id);
 
     return productData ? (  
-     <div key={ind} className="">
-            <img src={productData.image[0]} alt="" />
-            <p>{productData.name}</p>
-            <p>{productData.price}</p>
-            <p>{i.size}</p>
-            <p>{i.quantity}</p>
-            </div>
+      // {container}
+  
+      <div className="h-32 m-10 border rounded-2xl bg-[#101828] flex justify-between">
+      <div className="flex  gap-2">
+        <img className='h-28 m-2 rounded-2xl ' src={productData.image[0]} alt="" />
+      <div className="">
+        <p className='text-white text-sm font-bold pt-4'>{productData.name}</p>
+        <p className='text-sm text-gray-400 pt-1'>${productData.price}</p>
+        <p className='text-gray-400 text-sm pt-1 '><span>Size: </span>{i.size}</p>
+        <p className='text-gray-400 text-sm pt-1'><span>Quantity: </span>{i.quantity}</p>
+    </div>
+      </div>
+      <div className="  mr-10 p-12 ">
+        <p className=' text-gray-400 hover:text-white border rounded-[10px] tracking-wide font-semibold p-2 text-sm cursor-pointer'>DELETE</p>
+      </div>
+    </div>
+
+   
+           
     ) : (<p key={ind}>Product not found</p>)
   })
 
