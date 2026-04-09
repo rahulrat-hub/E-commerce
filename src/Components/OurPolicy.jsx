@@ -5,7 +5,7 @@ import Section from './Section'
 
 function OurPolicy() {
   return (
-    <div className="bg-gradient-to-b from-black via-gray-900 to-black text-gray-200 overflow-x-hidden">
+    <div className="bg-linear-to-b from-black via-gray-900 to-black text-gray-200 overflow-x-hidden">
 
       {/* HERO SECTION */}
       <div className="text-center py-20 px-6 max-w-4xl mx-auto">

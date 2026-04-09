@@ -16,7 +16,7 @@ function RelatedProducts({ category, subcategory }) {
   }, [category, subcategory])
 
   return (
-    <section className="bg-gradient-to-b from-black via-gray-900 to-black text-gray-200 py-16 px-6">
+    <section className="bg-linear-to-b from-black via-gray-900 to-black text-gray-200 py-16 px-6">
 
       {/* Section Title */}
       <div className="max-w-5xl mx-auto text-center mb-12">

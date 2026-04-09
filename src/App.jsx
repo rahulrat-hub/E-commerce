@@ -14,7 +14,7 @@ import Cart from './pages/Cart'
 
 function App() {
   return (
-    <div className='h-screen w-full'>
+    <div className='h-screen w-full bg-linear-to-b from-black via-gray-900 to-black'>
       
       <Navbar />
   <CustomCursor />

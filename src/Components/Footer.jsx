@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-black via-gray-900 to-black text-gray-200 px-6 md:px-16">
+    <footer className="bg-linear-to-b from-black via-gray-900 to-black text-gray-200 px-6 md:px-16">
 
       {/* TOP CTA */}
       <div className="text-center py-20 border-b border-gray-800 max-w-4xl mx-auto">

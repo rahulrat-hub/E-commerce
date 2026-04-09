@@ -4,7 +4,7 @@ import { products } from '../assets/frontend_assets/assets';
 
 
 function Cart() {
- const {cartItem} =  useContext(ProductContext)
+ const {cartItem, increaseQty, decreaseQty } =  useContext(ProductContext)
 const [newData, setnewData] = useState([])
 
 function FormateData(){
@@ -33,7 +33,7 @@ useEffect(() => {
     return productData ? (  
       // {container}
   
-      <div className="h-32 m-10 border rounded-2xl bg-[#101828] flex justify-between">
+      <div key={ind} className="h-32 m-10 border rounded-2xl bg-[#101828] flex justify-between">
       <div className="flex  gap-2">
         <img className='h-28 m-2 rounded-2xl ' src={productData.image[0]} alt="" />
       <div className="">
@@ -43,8 +43,9 @@ useEffect(() => {
         <p className='text-gray-400 text-sm pt-1'><span>Quantity: </span>{i.quantity}</p>
     </div>
       </div>
-      <div className="  mr-10 p-12 ">
-        <p className=' text-gray-400 hover:text-white border rounded-[10px] tracking-wide font-semibold p-2 text-sm cursor-pointer'>DELETE</p>
+      <div className="p-12 ">
+        <button onClick={()=>decreaseQty(i._id, i.size)}  className='px-4 text-white text-2xl cursor-pointer'>-</button>
+       <button onClick={()=>increaseQty(i._id, i.size)} className='px-4 text-white text-2xl cursor-pointer'>+</button>
       </div>
     </div>
 

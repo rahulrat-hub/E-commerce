@@ -38,7 +38,7 @@ function BestSeller() {
                 image={obj.image}
                 price={obj.price}
               />
-            </div>
+            </div> 
           ))
         }
       </div>

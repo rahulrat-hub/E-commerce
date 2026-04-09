@@ -29,7 +29,7 @@ export default function LandingPage() {
     <div className="bg-black text-gray-200 font-sans">
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-gray-900 via-black to-gray-900 text-center py-24 px-6">
+      <section className="bg-linear-to-r from-gray-900 via-black to-gray-900 text-center py-24 px-6">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
           Build Faster. Grow Smarter. Deliver Better.
         </h1>

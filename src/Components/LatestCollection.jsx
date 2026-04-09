@@ -5,10 +5,10 @@ import ProductItem from './ProductItem'
 
 function LatestCollection() {
 
-  const [lProduct] = useState(products)
+  
 
   return (
-    <section className="bg-gradient-to-b from-black via-gray-900 to-black text-gray-200 py-16 px-6">
+    <section className="bg-linear-to-b from-black via-gray-900 to-black text-gray-200 py-16 px-6">
 
       {/* Title Section */}
       <div className="max-w-5xl mx-auto text-center mb-12">
@@ -22,7 +22,7 @@ function LatestCollection() {
       {/* Products Grid */}
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
         {
-          lProduct.slice(0,4).map((obj, ind) => (
+          products.slice(0,4).map((obj, ind) => (
             <div 
               key={ind}
               className="bg-gray-900 border border-gray-800 rounded-xl p-2 hover:border-blue-500 transition duration-300"

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function ProductItem({ image, name, price, index, id }) {
+function ProductItem({ image, name, price, id }) {
   return (
 <Link to={`/product/${id}`}>
       <div className="h-95 w-62.5 p-3.75 border border-gray-400 rounded-2xl ">

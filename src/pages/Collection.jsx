@@ -65,7 +65,7 @@ function Collection() {
   }, [category, subCategory, sortPrice, searchbar]);
 
   return (
-    <div className="bg-black min-h-screen text-white px-6">
+    <div className="bg-linear-to-b from-black via-gray-900 to-black min-h-screen text-white px-6">
 
       {/* Heading */}
       <h1 className="text-3xl text-center font-bold pt-6 underline underline-offset-4 decoration-gray-600">
