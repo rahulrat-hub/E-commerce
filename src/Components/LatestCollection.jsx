@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Title from './Title'
 import { products } from '../assets/frontend_assets/assets'
 import ProductItem from './ProductItem'
 
 function LatestCollection() {
-
-  
 
   return (
     <section className="bg-linear-to-b from-black via-gray-900 to-black text-gray-200 py-16 px-6">

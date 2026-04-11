@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import {products} from '../assets/frontend_assets/assets'
 
 // create
 export let ProductContext = createContext();
@@ -70,9 +71,26 @@ function ProductProvider({ children }) {
     setcartItem(copy);
   };
 
+
+
+    const totalcart = () => {
+let totalprice = 0
+for(let id in cartItem){
+  let iteminfo = products.find((i)=>i._id === id)
+  for(let size in cartItem[id]){
+    if(cartItem[id][size]){
+      totalprice += iteminfo.price * cartItem[id][size]
+    }
+  }
+}
+return totalprice;
+  }
+
   useEffect(() => {
     // optional (localStorage)
   }, [cartItem]);
+
+
 
   const obj = {
     cartItem,
@@ -80,6 +98,7 @@ function ProductProvider({ children }) {
     getTotalQuantity,
     increaseQty,
     decreaseQty,
+    totalcart
   };
 
   return (
