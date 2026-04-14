@@ -19,3 +19,7 @@
   z-index: 9999;
 }
 
+::selection{
+    color: rgb(121, 121, 121);
+}
+

@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ProductContext } from '../context/ProductContext'
 import { products } from '../assets/frontend_assets/assets';
+import { Navigate } from 'react-router-dom';
+import CartTotal from './CartTotal';
 
 
 function Cart() {
- const {cartItem, increaseQty, decreaseQty, totalcart } =  useContext(ProductContext)
+ const {cartItem, increaseQty, decreaseQty, navigate } =  useContext(ProductContext)
 const [newData, setnewData] = useState([])
-const [tv, settv] = useState(0);
+
 
 function FormateData(){
   let tempdata = [];
@@ -25,8 +27,8 @@ function FormateData(){
 
 useEffect(() => { 
   FormateData();
-let result = totalcart()
-settv(result)
+// let result = totalcart()
+// settv(result)
 // console.log(tv)
 }, [cartItem])
  
@@ -58,32 +60,11 @@ settv(result)
 ) : (<p key={ind}>Product not found</p>);
 })}
 
-{/* Cart Total Section */}
-     {
-      newData.length > 0 && (
-         <div className="m-10 p-6 bg-[#1f2937] rounded-2xl text-white">
-        <h2 className="text-xl font-bold mb-4">Cart Total</h2>
+<CartTotal />
 
-        <div className="flex justify-between">
-          <p>Subtotal</p>
-          <p>${tv}</p>
-        </div>
-
-        <div className="flex justify-between mt-2">
-          <p>Shipping</p>
-          <p>$50</p>
-        </div>
-
-        <hr className="my-3" />
-
-        <div className="flex justify-between font-bold">
-          <p>Total</p>
-          <p>${tv + 50}</p>
-        </div>
-      </div>
-      )
-     }
-
+<button 
+    className='text-white px-150 font-bold tracking-wide text-2xl underline underline-offset-4 decoration-blue-500'
+   onClick={()=>navigate('/Order')}>Order</button>
 </div>
 )
 } 

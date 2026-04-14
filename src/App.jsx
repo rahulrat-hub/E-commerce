@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import SingleProduct from './pages/SingleProduct'
 import CustomCursor from './Components/CustomCursor'
 import Cart from './pages/Cart'
+import Orders from './pages/Orders'
 
 
 
@@ -25,6 +26,7 @@ function App() {
        <Route path='/product/:pid' element={<SingleProduct />} />
    <Route path='/Contact' element={<Contact />} />
    <Route path='/Cart' element={<Cart />} />
+  <Route path='/Order' element={<Orders />} />
       </Routes>
       
     </div>

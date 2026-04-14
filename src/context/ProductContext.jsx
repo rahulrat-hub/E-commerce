@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import {products} from '../assets/frontend_assets/assets'
+import { useNavigate } from "react-router-dom";
 
 // create
 export let ProductContext = createContext();
@@ -8,6 +9,7 @@ export let ProductContext = createContext();
 function ProductProvider({ children }) {
 
   const [cartItem, setcartItem] = useState({});
+  let navigate = useNavigate();
 
   function getTotalQuantity() {
     let total = 0;
@@ -93,6 +95,7 @@ return totalprice;
 
 
   const obj = {
+    navigate,
     cartItem,
     addToBag,
     getTotalQuantity,
